@@ -6,6 +6,7 @@ import {HomePage} from '../home/home';
 import {VideoPage} from '../video/video';
 import {PhotoPage} from '../photo/photo';
 import {TextPage} from '../text/text';
+import {QuotePage} from '../quote/quote';
 
 // import { SchedulePage } from '../schedule/schedule';
 // import { SpeakerListPage } from '../speaker-list/speaker-list';
@@ -20,6 +21,7 @@ export class TabsPage {
   tab2Root: any = VideoPage;
   tab3Root: any = PhotoPage;
   tab4Root: any = TextPage;
+  tab5Root: any = QuotePage;
   mySelectedIndex: number;
 
   constructor(navParams: NavParams) {

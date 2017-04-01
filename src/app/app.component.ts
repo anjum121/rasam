@@ -7,6 +7,7 @@ import {Storage} from '@ionic/storage';
 import {TabsPage} from '../pages/tabs/tabs';
 import {TutorialPage} from '../pages/tutorial/tutorial';
 import {HomePage} from '../pages/home/home'
+import {SettingPage} from '../pages/setting/setting'
 
 
 export interface PageInterface {
@@ -30,9 +31,7 @@ export class RasamApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-    {title: 'Schedule', component: TabsPage, tabComponent: HomePage, icon: 'calendar'},
-    {title: 'Speakers', component: TabsPage, tabComponent: HomePage, index: 1, icon: 'contacts'},
-    {title: 'Map', component: TabsPage, tabComponent: HomePage, index: 2, icon: 'map'},
+    {title: 'Settings', component: SettingPage, tabComponent: SettingPage, icon: 'cog'},
     {title: 'About', component: TabsPage, tabComponent: HomePage, index: 3, icon: 'information-circle'}
   ];
   // loggedInPages: PageInterface[] = [
