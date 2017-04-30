@@ -31,26 +31,13 @@ export class RasamApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-    {title: 'Settings', component: SettingPage, tabComponent: SettingPage, icon: 'cog'},
-    {title: 'About', component: TabsPage, tabComponent: HomePage, index: 3, icon: 'information-circle'}
+    {title: 'Settings', component: SettingPage, tabComponent: SettingPage, icon: 'cog'}
   ];
-  // loggedInPages: PageInterface[] = [
-  //   { title: 'Account', component: AccountPage, icon: 'person' },
-  //   { title: 'Support', component: SupportPage, icon: 'help' },
-  //   { title: 'Logout', component: TabsPage, icon: 'log-out', logsOut: true }
-  // ];
-  // loggedOutPages: PageInterface[] = [
-  //   { title: 'Login', component: LoginPage, icon: 'log-in' },
-  //   { title: 'Support', component: SupportPage, icon: 'help' },
-  //   { title: 'Signup', component: SignupPage, icon: 'person-add' }
-  // ];
   rootPage: any;
 
   constructor(public events: Events,
-              // public userData: UserData,
               public menu: MenuController,
               public platform: Platform,
-              // public confData: ConferenceData,
               public storage: Storage,
               public splashScreen: SplashScreen) {
 
@@ -64,16 +51,6 @@ export class RasamApp {
         }
         this.platformReady()
       })
-
-    // load the conference data
-    // confData.load();
-
-    // decide which menu items should be hidden by current login status stored in local storage
-    // this.userData.hasLoggedIn().then((hasLoggedIn) => {
-    //   this.enableMenu(hasLoggedIn === true);
-    // });
-    //
-    // this.listenToLoginEvents();
   }
 
   openPage(page: PageInterface) {
@@ -85,41 +62,15 @@ export class RasamApp {
         console.log("Didn't set nav root");
       });
     } else {
-      this.nav.setRoot(page.component).catch(() => {
+      this.nav.push(page.component).catch(() => {
         console.log("Didn't set nav root");
       });
-    }
-
-    if (page.logsOut === true) {
-      // Give the menu time to close before changing to logged out
-      setTimeout(() => {
-        // this.userData.logout();
-      }, 1000);
     }
   }
 
   openTutorial() {
     this.nav.setRoot(TutorialPage);
   }
-
-  // listenToLoginEvents() {
-  //   this.events.subscribe('user:login', () => {
-  //     this.enableMenu(true);
-  //   });
-  //
-  //   this.events.subscribe('user:signup', () => {
-  //     this.enableMenu(true);
-  //   });
-  //
-  //   this.events.subscribe('user:logout', () => {
-  //     this.enableMenu(false);
-  //   });
-  // }
-
-  // enableMenu(loggedIn: boolean) {
-  //   this.menu.enable(loggedIn, 'loggedInMenu');
-  //   this.menu.enable(!loggedIn, 'loggedOutMenu');
-  // }
 
   platformReady() {
     // Call any initial plugins when ready

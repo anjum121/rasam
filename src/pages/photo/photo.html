@@ -1,7 +1,7 @@
 <ion-header no-border-bottom>
 
 
-  <ion-navbar>
+  <ion-navbar  color="photo">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -11,8 +11,24 @@
 </ion-header>
 
 
+<ion-content>
+
+  <ion-card *ngFor="let item of items">
+    <div class="media-holder" (click)="showMedia(item)" tappable>
+      <img [src]="item.photos[0].original_size.url"/>
+    </div>
+
+    <ion-card-content *ngIf="item.summary.length >   0">
+      <ion-card-title>
+        {{item.summary}}
+      </ion-card-title>
+    </ion-card-content>
+
+  </ion-card>
 
 
-<ion-content padding>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

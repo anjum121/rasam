@@ -1,9 +1,12 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {ModalController, Events, NavParams, NavController} from 'ionic-angular';
+
+import {TranslateService} from 'ng2-translate';
+import {AppConstant} from '../../constants/app.constants';
 import {DomSanitizer} from '@angular/platform-browser';
-
-
 import {ApiServices} from '../../providers/services';
+import {PopupPage} from '../popup/popup';
+
 
 @Component({
   selector: 'page-home',
@@ -11,41 +14,67 @@ import {ApiServices} from '../../providers/services';
 })
 export class HomePage {
 
-
-  videos: any;
+  private start: number = 0;
+  homeText: any;
+  public items: any = [];
   request = {
-    type: 'video',
+    type: '',
     offset: 0
   };
 
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private sanitizer: DomSanitizer,
-              public apiServices: ApiServices) {
-
-
+  constructor(
+              public modalController: ModalController,
+              public apiServices: ApiServices,
+              private events: Events,
+              private translate: TranslateService,
+              private appConstant: AppConstant) {
   }
 
+  ngOnInit() {
+    this.events.subscribe(this.appConstant.EVENT_APP_LANGUAGE_CHANGED, () => {
+      this.translate.get('MENU.HOME').subscribe((text: string) => {
+        this.homeText = text;
+      });
+
+    });
+
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-    this.getVideos();
+    this.loadData();
   }
 
 
-  getVideos() {
-    this.apiServices.getItem(this.request).then((data) => {
-      this.videos = data;
-      console.log(data)
-    }, (err) => {
-      console.log("not allowed");
+  loadData() {
+    return new Promise(resolve => {
+      this.apiServices.getItem(this.request).then((data: any) => {
+        for (let item of data.posts) {
+          this.items.push(item);
+        }
+        resolve(true);
+      });
     });
+
+  }
+
+  doInfinite(infiniteScroll: any) {
+    console.log('doInfinite, start is currently ' + this.request.offset);
+
+    this.request.offset += 10;
+    this.loadData().then(() => {
+      infiniteScroll.complete();
+    });
+
   }
 
 
-  showMedia(item){
-      console.log(item)
+  showMedia(item) {
+    let modal = this.modalController.create(PopupPage, {item: item});
+    modal.onDidDismiss(data => {
+      console.log(data);
+    });
+    modal.present();
   }
 
 

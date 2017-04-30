@@ -1,6 +1,12 @@
-import {NgModule, ErrorHandler} from '@angular/core';
+import {NgModule, ErrorHandler } from '@angular/core';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {IonicStorageModule} from '@ionic/storage';
+import {Http} from '@angular/http';
+
+import {MyTranslateLoader} from '../translate/translate.service';
+import {TranslateModule, TranslateLoader, TranslateService} from 'ng2-translate';
+import {GlobalizationService} from '../providers/globalization'
+import {StorageService} from '../providers/storage'
 
 
 //SERVICES
@@ -20,7 +26,9 @@ import {PhotoPage} from '../pages/photo/photo';
 import {TextPage} from '../pages/text/text';
 import {SettingPage} from '../pages/setting/setting';
 import {AboutPage} from '../pages/about/about';
-import {QuotePage} from '../pages/quote/quote';
+import {LinkPage} from '../pages/links/link';
+import {PopupPage} from '../pages/popup/popup';
+
 
 
 import {StatusBar} from '@ionic-native/status-bar';
@@ -37,7 +45,8 @@ const appResources = [
   TextPage,
   SettingPage,
   AboutPage,
-  QuotePage,
+  LinkPage,
+  PopupPage,
 
 ];
 
@@ -47,6 +56,11 @@ const appResources = [
   ],
 
   imports: [
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (MyTranslateLoader),
+      deps: [Http]
+    }),
     IonicModule.forRoot(RasamApp),
     IonicStorageModule.forRoot()
   ],
@@ -60,9 +74,21 @@ const appResources = [
     AppConstant,
     ServiceConstants,
     ApiServices,
+    GlobalizationService,
+    StorageService,
 
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {
+
+  constructor(public translate: TranslateService,
+              private globalizationService: GlobalizationService) {
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translate.addLangs([this.globalizationService.LANGUAGE_en_US]);
+    // translate.setDefaultLang('en-US');
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use(this.globalizationService.getDeviceLanguage());
+  }
+
 }

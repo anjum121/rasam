@@ -1,18 +1,55 @@
-<ion-header no-border-bottom>
+<!--<ion-header no-border-bottom>-->
 
 
+  <!--<ion-navbar>-->
+    <!--<button ion-button menuToggle>-->
+      <!--<ion-icon name="menu"></ion-icon>-->
+    <!--</button>-->
+    <!--<ion-title>Settings</ion-title>-->
+  <!--</ion-navbar>-->
+
+<!--</ion-header>-->
+<ion-header class="header-dark no-back-button-text" no-border>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Settings</ion-title>
+    <ion-title>{{ 'App Settings' | translate }} anjum</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-
-
 <ion-content padding>
+
+  <!--<div>-->
+    <!--<h2>{{ 'MENU.HOME' | translate }}</h2>-->
+    <!--<label>-->
+      <!--{{ 'MENU.VIDEO' | translate }}-->
+      <!--<select #langSelect (change)="translate.use(langSelect.value)">-->
+        <!--<option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{-->
+          <!--lang }}-->
+        <!--</option>-->
+      <!--</select>-->
+    <!--</label>-->
+  <!--</div>-->
+
+
+  <ion-list >
+    <ion-list-header class="list-item-header item-transparent item-left-zero item-border-none">
+      <ion-icon name="icon-location"></ion-icon>
+      {{'MENU.HOME' | translate}}
+    </ion-list-header>
+
+    <ion-item class="item-transparent item-left-zero item-border-none">
+      <ion-label> {{'LANGUAGE' | translate}}</ion-label>
+      <ion-select cancelText="Cancel" okText="Select"
+                  (ionChange)="updateLang($event)">
+
+        <ion-option *ngFor="let lang of languageList"
+                    [value]="lang.code"
+                    [selected]="lang.code === selectedLanguageCode">
+          {{lang.description }}
+        </ion-option>
+
+      </ion-select>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

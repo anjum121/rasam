@@ -1,25 +1,30 @@
 <ion-header no-border-bottom>
 
 
-  <ion-navbar  color="text">
+  <ion-navbar  color="link">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Text</ion-title>
+    <ion-title>{{ 'MENU.LINK' | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
+
+
+<ion-content  >
   <ion-card *ngFor="let item of items">
 
 
     <ion-card-content (click)="showMedia(item)" tappable>
       <ion-card-title>
         {{item.summary}}
+
+        <h3>{{item.excerpt}}</h3>
       </ion-card-title>
     </ion-card-content>
+
   </ion-card>
 
 

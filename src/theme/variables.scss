@@ -23,13 +23,41 @@ $font-path: "../assets/fonts";
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+//$colors: (
+//
+//  primary:    #387ef5,
+//  secondary:  #32db64,
+//  danger:     #f53d3d,
+//  light:      #f4f4f4,
+//  dark:       #222
+//);
+
+
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary: #0077b5,
+  menuBg: #004e77,
+  secondary: #32db64,
+  video: #0077b5,
+  text: #0077b5,
+  photo: #0077b5,
+  link: #0077b5,
+
 );
+
+
+.appMenu{
+  background: #004e77;
+}
+
+
+.ios,
+.android{
+  .outer-content {
+    background: #005079!important;
+  }
+}
+
+
 
 
 // App iOS Variables

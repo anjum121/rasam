@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { NavParams } from 'ionic-angular';
+import {NavParams, Events} from 'ionic-angular';
+import {TranslateService} from 'ng2-translate';
+import {AppConstant} from '../../constants/app.constants';
 
 import {HomePage} from '../home/home';
 import {VideoPage} from '../video/video';
 import {PhotoPage} from '../photo/photo';
 import {TextPage} from '../text/text';
-import {QuotePage} from '../quote/quote';
+import {LinkPage} from '../links/link';
 
-// import { SchedulePage } from '../schedule/schedule';
-// import { SpeakerListPage } from '../speaker-list/speaker-list';
+
 
 
 @Component({
@@ -21,11 +22,37 @@ export class TabsPage {
   tab2Root: any = VideoPage;
   tab3Root: any = PhotoPage;
   tab4Root: any = TextPage;
-  tab5Root: any = QuotePage;
+  tab5Root: any = LinkPage;
   mySelectedIndex: number;
 
-  constructor(navParams: NavParams) {
+  //text
+
+  homeText:any ;
+
+  constructor(navParams: NavParams,
+              private events: Events,
+              private translate: TranslateService,
+              private appConstant: AppConstant) {
     this.mySelectedIndex = navParams.data.tabIndex || 0;
   }
+
+
+  ngOnInit() {
+
+
+   // this.homeText = this.translate.get('MENU.HOME');
+
+
+    this.events.subscribe(this.appConstant.EVENT_APP_LANGUAGE_CHANGED, () => {
+      this.translate.get('MENU.HOME').subscribe((text: string) => {
+        this.homeText = text;
+        console.log(text);
+      });
+
+    });
+
+
+  }
+
 
 }

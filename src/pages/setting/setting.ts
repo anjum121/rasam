@@ -1,22 +1,46 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams, Events} from 'ionic-angular';
+import {TranslateService} from 'ng2-translate';
+import {AppConstant} from '../../constants/app.constants';
 
-/*
-  Generated class for the Setting page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+import {LanguageInfo} from '../../dto/common.dto';
+import {GlobalizationService} from '../../providers/globalization';
+
+
 @Component({
   selector: 'page-setting',
   templateUrl: 'setting.html'
 })
 export class SettingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  selectedLanguageCode: any;
+  languageList: any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingPage');
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private events: Events,
+              private translate: TranslateService,
+              private appConstant: AppConstant,
+              private globalizationService: GlobalizationService,) {
+
+    this.selectedLanguageCode = this.globalizationService.getDeviceLanguage();
+    let availableLanguages: Array<LanguageInfo> = this.globalizationService.getAvailableLanguages();
+
+    this.languageList = [];
+    for (let i = 0; i < availableLanguages.length; i++) {
+      let language: LanguageInfo = availableLanguages[i];
+      this.languageList.push(language);
+    }
+
+  }
+
+
+  updateLang(languageCode: string) {
+    this.selectedLanguageCode = languageCode;
+    this.globalizationService.saveDeviceLanguage(languageCode);
+    this.translate.use(languageCode);
+    this.events.publish(this.appConstant.EVENT_APP_LANGUAGE_CHANGED);
   }
 
 }

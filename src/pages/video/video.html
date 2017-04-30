@@ -1,7 +1,7 @@
-<ion-header no-border-bottom>
+<ion-header no-border-bottom >
 
 
-  <ion-navbar>
+  <ion-navbar color="video">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -11,8 +11,51 @@
 </ion-header>
 
 
+<ion-content  >
 
 
-<ion-content padding>
+  <ion-card *ngFor="let item of items" class="ion-card-holder">
+
+
+    <div class="media-holder" (click)="showMedia(item)" tappable>
+      <img [src]="item.thumbnail_url"/>
+    </div>
+    <ion-card-content *ngIf="item.summary.length >   0">
+      <ion-card-title>
+        {{item.summary}}
+      </ion-card-title>
+    </ion-card-content>
+
+
+    <!--<ion-row>-->
+      <!--<ion-col>-->
+        <!--<button ion-button icon-left clear small>-->
+          <!--<ion-icon name="thumbs-up"></ion-icon>-->
+          <!--<div>12 Likes</div>-->
+        <!--</button>-->
+      <!--</ion-col>-->
+      <!--<ion-col>-->
+        <!--<button ion-button icon-left clear small>-->
+          <!--<ion-icon name="text"></ion-icon>-->
+          <!--<div>{{item.note_count}}</div>-->
+        <!--</button>-->
+      <!--</ion-col>-->
+      <!--<ion-col center text-center>-->
+
+        <!--<button ion-button icon-left clear small>-->
+          <!--<ion-icon name="calendar"></ion-icon>-->
+          <!--<div>{{item.date | date}}</div>-->
+        <!--</button>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+
+
+  </ion-card>
+
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 
 </ion-content>

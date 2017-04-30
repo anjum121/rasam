@@ -1,12 +1,13 @@
-<ion-header no-border-bottom>
+<ion-header >
 
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>{{ 'MENU.HOME' | translate}}</ion-title>
   </ion-navbar>
+
 
 </ion-header>
 
@@ -14,27 +15,84 @@
 <ion-content>
 
 
-  <ion-card *ngFor="let item of videos">
-    <div class="media-holder" (click)="showMedia(item)" tappable>
-      <img [src]="item.thumbnail_url"/>
 
-      {{item.video.youtube.video_id }}
 
-      <iframe width="100%" height="360px"
-              [src]="sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+ item.video.youtube.video_id +'?feature=player_embedded')"
-                frameborder="0" allowfullscreen></iframe>
+  <ion-card *ngFor="let item of items" class="ion-card-holder">
 
+
+
+    <!--Videos -->
+    <div class="" *ngIf="item.type ==='video'">
+
+      <div class="media-holder" (click)="showMedia(item)" tappable>
+        <h4 class="tag-holder">{{item.type}}</h4>
+        <img [src]="item.thumbnail_url" />
+      </div>
+      <ion-card-content *ngIf="item.summary.length >   0">
+        <ion-card-title>
+          {{item.summary}}
+        </ion-card-title>
+      </ion-card-content>
     </div>
 
-    <ion-card-content>
-      <ion-card-title>
-        {{item.summary}}
-      </ion-card-title>
-      <p>
-        The most popular industrial group ever, and largely
-        responsible for bringing the music to a mass audience.
-      </p>
-    </ion-card-content>
+    <!--Photo -->
+    <div class="" *ngIf="item.type ==='photo'">
+      <div class="media-holder" (click)="showMedia(item)" tappable>
+        <h4 class="tag-holder">{{item.type}}</h4>
+        <img [src]="item.photos[0].original_size.url" />
+      </div>
+
+      <ion-card-content  *ngIf="item.summary.length >   0">
+        <ion-card-title>
+          {{item.summary}}
+        </ion-card-title>
+      </ion-card-content>
+    </div>
+
+
+    <!--Photo -->
+    <div class="" *ngIf="item.type ==='audio'">
+      <div class="media-holder" (click)="showMedia(item)" tappable>
+        <h4 class="tag-holder">{{item.type}}</h4>
+        <img [src]="item.album_art" />
+      </div>
+
+      <ion-card-content  *ngIf="item.summary.length >   0">
+        <ion-card-title>
+          {{item.summary}}  audio
+        </ion-card-title>
+      </ion-card-content>
+    </div>
+
+
+    <!--<ion-row>-->
+      <!--<ion-col>-->
+        <!--<button ion-button icon-left clear small>-->
+          <!--<ion-icon name="thumbs-up"></ion-icon>-->
+            <!--<div>12 Likes</div>-->
+        <!--</button>-->
+      <!--</ion-col>-->
+      <!--<ion-col>-->
+        <!--<button ion-button icon-left clear small>-->
+          <!--<ion-icon name="text"></ion-icon>-->
+          <!--<div>{{item.note_count}}</div>-->
+        <!--</button>-->
+      <!--</ion-col>-->
+      <!--<ion-col center text-center>-->
+
+        <!--<button ion-button icon-left clear small>-->
+          <!--<ion-icon name="calendar"></ion-icon>-->
+          <!--<div>{{item.date | date}}</div>-->
+        <!--</button>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+
+
   </ion-card>
+
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

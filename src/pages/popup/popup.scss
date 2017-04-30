@@ -1,0 +1,42 @@
+page-popup {
+
+  .videoPlayer{
+    width: 100%;
+  }
+
+  .image-holder{
+    position: relative;
+  }
+  .image-holder img{
+    width: 100%;
+  }
+
+  .audio-controls{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    opacity: .7;
+  }
+
+  .tag-holder{
+    position: absolute;
+    top: 0;
+    background: rgba(0,0,0, .5);
+    padding: 5px 10px;
+    border-radius: 20px;
+    /* line-height: 2rem; */
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    right: 10px;
+  }
+
+  .item-details-holder{
+    position: relative;
+    .spinner{
+      z-index: -1;
+    }
+  }
+
+}

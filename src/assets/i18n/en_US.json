@@ -1,0 +1,9 @@
+{
+  "MENU": {
+    "HOME": "Home",
+    "VIDEO": "Video",
+    "PHOTO": "Photo",
+    "TEXT": "Text",
+    "LINK": "Link"
+  }
+}

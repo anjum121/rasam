@@ -1,7 +1,7 @@
-<ion-tabs [selectedIndex]="mySelectedIndex">
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Video" tabIcon="logo-youtube"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Photo" tabIcon="images"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Text" tabIcon="document"></ion-tab>
-  <ion-tab [root]="tab5Root" tabTitle="Quote" tabIcon="quote"></ion-tab>
+<ion-tabs [selectedIndex]="mySelectedIndex" color="primary">
+  <ion-tab [root]="tab1Root" tabTitle="{{ 'MENU.HOME' | translate }}" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="{{ 'MENU.VIDEO' | translate }}" tabIcon="logo-youtube"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="{{ 'MENU.PHOTO' | translate }}" tabIcon="images"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="{{ 'MENU.TEXT' | translate }}" tabIcon="document"></ion-tab>
+  <ion-tab [root]="tab5Root" tabTitle="{{ 'MENU.LINK' | translate }}" tabIcon="quote"></ion-tab>
 </ion-tabs>

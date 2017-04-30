@@ -5,23 +5,17 @@ import {ApiServices} from '../../providers/services';
 import {PopupPage} from '../popup/popup';
 
 
-
-
-
-
-
 @Component({
-  selector: 'page-photo',
-  templateUrl: 'photo.html'
+  selector: 'page-link',
+  templateUrl: 'link.html'
 })
-export class PhotoPage {
+export class LinkPage {
   private start: number = 0;
   public items: any = [];
   request = {
-    type: 'photo',
+    type: 'link',
     offset: 0
   };
-
 
 
   constructor(public navCtrl: NavController,
@@ -36,7 +30,6 @@ export class PhotoPage {
   ionViewDidLoad() {
     this.loadData();
   }
-
 
 
   loadData() {
@@ -58,10 +51,8 @@ export class PhotoPage {
     this.loadData().then(() => {
       infiniteScroll.complete();
     });
+
   }
-
-
-
 
   showMedia(item) {
     let modal = this.modalController.create(PopupPage, {item: item});
