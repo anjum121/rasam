@@ -19,6 +19,7 @@
       <ion-card-title>
         {{item.summary}}
       </ion-card-title>
+      <div *ngFor="let img of item.photos"> <img class="full-image" src="{{img.original_size.url}}" /> </div>
     </ion-card-content>
   </ion-card>
 

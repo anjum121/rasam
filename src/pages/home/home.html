@@ -12,8 +12,43 @@
 </ion-header>
 
 
-<ion-content>
 
+
+
+
+  <ion-content>
+    <div class="card-background-page">
+    <ion-card>
+      <img src="assets/imgs/card-saopaolo.png"/>
+      <div class="card-title">Funny Videos</div>
+      <div class="card-subtitle">41 Listings</div>
+    </ion-card>
+
+    <ion-card>
+      <img src="assets/imgs/card-amsterdam.png"/>
+      <div class="card-title">Whatsapp Fun</div>
+      <div class="card-subtitle">64 Listings</div>
+    </ion-card>
+
+    <ion-card>
+      <img src="assets/imgs/card-saopaolo.png"/>
+      <div class="card-title">Trolls</div>
+      <div class="card-subtitle">72 Listings</div>
+    </ion-card>
+
+    <ion-card>
+      <img src="assets/imgs/card-amsterdam.png"/>
+      <div class="card-title">NSFW</div>
+      <div class="card-subtitle">28 Listings</div>
+    </ion-card>
+    </div>
+
+
+    <ion-list>
+      <ion-list-header>
+       <h1> ചൂടൻ പോസ്റ്റുകൾ</h1>
+      </ion-list-header>
+    </ion-list>
 
 
 
@@ -25,7 +60,7 @@
     <div class="" *ngIf="item.type ==='video'">
 
       <div class="media-holder" (click)="showMedia(item)" tappable>
-        <h4 class="tag-holder">{{item.type}}</h4>
+        <h1 class="tag-holder"><ion-icon name="play"></ion-icon></h1>
         <img [src]="item.thumbnail_url" />
       </div>
       <ion-card-content *ngIf="item.summary.length >   0">
@@ -38,7 +73,7 @@
     <!--Photo -->
     <div class="" *ngIf="item.type ==='photo'">
       <div class="media-holder" (click)="showMedia(item)" tappable>
-        <h4 class="tag-holder">{{item.type}}</h4>
+        <!--<h4 class="tag-holder">{{item.type}}</h4>-->
         <img [src]="item.photos[0].original_size.url" />
       </div>
 

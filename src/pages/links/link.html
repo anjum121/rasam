@@ -20,7 +20,7 @@
     <ion-card-content (click)="showMedia(item)" tappable>
       <ion-card-title>
         {{item.summary}}
-
+        <div *ngFor="let img of item.photos"> <img class="full-image" src="{{img.original_size.url}}" /> </div>
         <h3>{{item.excerpt}}</h3>
       </ion-card-title>
     </ion-card-content>
