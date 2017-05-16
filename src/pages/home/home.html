@@ -1,135 +1,175 @@
-<ion-header >
+<ion-header>
 
 
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>{{ 'MENU.HOME' | translate}}</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{ 'MENU.HOME' | translate}}</ion-title>
+    </ion-navbar>
 
 
 </ion-header>
 
 
+<ion-content>
 
 
-
-
-  <ion-content>
     <div class="card-background-page">
-    <ion-card>
-      <img src="assets/imgs/card-saopaolo.png"/>
-      <div class="card-title">Funny Videos</div>
-      <div class="card-subtitle">41 Listings</div>
-    </ion-card>
 
-    <ion-card>
-      <img src="assets/imgs/card-amsterdam.png"/>
-      <div class="card-title">Whatsapp Fun</div>
-      <div class="card-subtitle">64 Listings</div>
-    </ion-card>
 
-    <ion-card>
-      <img src="assets/imgs/card-saopaolo.png"/>
-      <div class="card-title">Trolls</div>
-      <div class="card-subtitle">72 Listings</div>
-    </ion-card>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-12>
+                    <ion-card>
+                        <img src="assets/imgs/card-saopaolo.png"/>
+                        <div class="card-title">Funny Videos</div>
+                        <div class="card-subtitle">41 Listings</div>
+                    </ion-card>
+                </ion-col>
+                <ion-col col-12>
+                    <ion-card>
+                        <img src="assets/imgs/card-amsterdam.png"/>
+                        <div class="card-title">Whatsapp Fun</div>
+                        <div class="card-subtitle">64 Listings</div>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
 
-    <ion-card>
-      <img src="assets/imgs/card-amsterdam.png"/>
-      <div class="card-title">NSFW</div>
-      <div class="card-subtitle">28 Listings</div>
-    </ion-card>
+        </ion-grid>
+
+
+    </div>
+
+
+    <div class="card-background-page">
+
+
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <ion-card>
+                        <img src="assets/imgs/card-saopaolo.png"/>
+                        <div class="card-title">Funny Videos</div>
+                        <div class="card-subtitle">41 Listings</div>
+                    </ion-card>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-card>
+                        <img src="assets/imgs/card-amsterdam.png"/>
+                        <div class="card-title">Whatsapp Fun</div>
+                        <div class="card-subtitle">64 Listings</div>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-6>
+                    <ion-card>
+                        <img src="assets/imgs/card-saopaolo.png"/>
+                        <div class="card-title">Trolls</div>
+                        <div class="card-subtitle">72 Listings</div>
+                    </ion-card>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-card>
+                        <img src="assets/imgs/card-amsterdam.png"/>
+                        <div class="card-title">NSFW</div>
+                        <div class="card-subtitle">28 Listings</div>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
     </div>
 
 
     <ion-list>
-      <ion-list-header>
-       <h1> ചൂടൻ പോസ്റ്റുകൾ</h1>
-      </ion-list-header>
+        <ion-list-header>
+            <h1> ചൂടൻ പോസ്റ്റുകൾ</h1>
+        </ion-list-header>
     </ion-list>
 
 
-
-  <ion-card *ngFor="let item of items" class="ion-card-holder">
-
+    <ion-card *ngFor="let item of items" class="ion-card-holder">
 
 
-    <!--Videos -->
-    <div class="" *ngIf="item.type ==='video'">
+        <!--Videos -->
+        <div class="" *ngIf="item.type ==='video'">
 
-      <div class="media-holder" (click)="showMedia(item)" tappable>
-        <h1 class="tag-holder"><ion-icon name="play"></ion-icon></h1>
-        <img [src]="item.thumbnail_url" />
-      </div>
-      <ion-card-content *ngIf="item.summary.length >   0">
-        <ion-card-title>
-          {{item.summary}}
-        </ion-card-title>
-      </ion-card-content>
-    </div>
+            <div class="media-holder" (click)="showMedia(item)" tappable>
+                <h1 class="tag-holder">
+                    <ion-icon name="play"></ion-icon>
+                </h1>
+                <img [src]="item.thumbnail_url"/>
+            </div>
+            <ion-card-content *ngIf="item.summary.length >   0">
+                <ion-card-title>
+                    {{item.summary}}
+                </ion-card-title>
+            </ion-card-content>
+        </div>
 
-    <!--Photo -->
-    <div class="" *ngIf="item.type ==='photo'">
-      <div class="media-holder" (click)="showMedia(item)" tappable>
-        <!--<h4 class="tag-holder">{{item.type}}</h4>-->
-        <img [src]="item.photos[0].original_size.url" />
-      </div>
+        <!--Photo -->
+        <div class="" *ngIf="item.type ==='photo'">
+            <div class="media-holder" (click)="showMedia(item)" tappable>
+                <!--<h4 class="tag-holder">{{item.type}}</h4>-->
+                <img [src]="item.photos[0].original_size.url"/>
+            </div>
 
-      <ion-card-content  *ngIf="item.summary.length >   0">
-        <ion-card-title>
-          {{item.summary}}
-        </ion-card-title>
-      </ion-card-content>
-    </div>
-
-
-    <!--Photo -->
-    <div class="" *ngIf="item.type ==='audio'">
-      <div class="media-holder" (click)="showMedia(item)" tappable>
-        <h4 class="tag-holder">{{item.type}}</h4>
-        <img [src]="item.album_art" />
-      </div>
-
-      <ion-card-content  *ngIf="item.summary.length >   0">
-        <ion-card-title>
-          {{item.summary}}  audio
-        </ion-card-title>
-      </ion-card-content>
-    </div>
-
-    <!--comment-->
+            <ion-card-content *ngIf="item.summary.length >   0">
+                <ion-card-title>
+                    {{item.summary}}
+                </ion-card-title>
+            </ion-card-content>
+        </div>
 
 
-    <!--<ion-row>-->
-      <!--<ion-col>-->
+        <!--Photo -->
+        <div class="" *ngIf="item.type ==='audio'">
+            <div class="media-holder" (click)="showMedia(item)" tappable>
+                <h4 class="tag-holder">{{item.type}}</h4>
+                <img [src]="item.album_art"/>
+            </div>
+
+            <ion-card-content *ngIf="item.summary.length >   0">
+                <ion-card-title>
+                    {{item.summary}} audio
+                </ion-card-title>
+            </ion-card-content>
+        </div>
+
+        <!--comment-->
+
+
+        <!--<ion-row>-->
+        <!--<ion-col>-->
         <!--<button ion-button icon-left clear small>-->
-          <!--<ion-icon name="thumbs-up"></ion-icon>-->
-            <!--<div>12 Likes</div>-->
+        <!--<ion-icon name="thumbs-up"></ion-icon>-->
+        <!--<div>12 Likes</div>-->
         <!--</button>-->
-      <!--</ion-col>-->
-      <!--<ion-col>-->
+        <!--</ion-col>-->
+        <!--<ion-col>-->
         <!--<button ion-button icon-left clear small>-->
-          <!--<ion-icon name="text"></ion-icon>-->
-          <!--<div>{{item.note_count}}</div>-->
+        <!--<ion-icon name="text"></ion-icon>-->
+        <!--<div>{{item.note_count}}</div>-->
         <!--</button>-->
-      <!--</ion-col>-->
-      <!--<ion-col center text-center>-->
+        <!--</ion-col>-->
+        <!--<ion-col center text-center>-->
 
         <!--<button ion-button icon-left clear small>-->
-          <!--<ion-icon name="calendar"></ion-icon>-->
-          <!--<div>{{item.date | date}}</div>-->
+        <!--<ion-icon name="calendar"></ion-icon>-->
+        <!--<div>{{item.date | date}}</div>-->
         <!--</button>-->
-      <!--</ion-col>-->
-    <!--</ion-row>-->
+        <!--</ion-col>-->
+        <!--</ion-row>-->
 
 
-  </ion-card>
+    </ion-card>
 
 
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
 </ion-content>
